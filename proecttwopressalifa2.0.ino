@@ -1,16 +1,18 @@
 
 
  #include <Wire.h>
- #include <Rtc_Pcf8563.h>
- #include <LiquidCrystal.h> 
+ #include <Rtc_Pcf856.h>
+  
  #include "pwrl.h"
+#include <L>
+ 
  //объявление объекта для работы с энкодером
 
-LiquidCrystal lcd(8, 7, 2, 3, 4, 5); // rs, e,d4, d5, d6, d7
-Rtc_Pcf8563 rtc;
+LiquidCrystal lcd(8, 7, 2, 3, 4,5); // rs, e,d4, d5, d6, d7
 
 
-void br(){
+
+void index.br(){
     if (digitalRead(BUT1) == HIGH)
     {
         BOSSOFTHEGYM = BOSSOFTHEGYM;
@@ -23,19 +25,19 @@ void br(){
     byte minute = rtc.getMinute();
     byte second = rtc.getSecond ();
 
-    if (hour == v1 && minute == d1 && second == 1)
+    if (hour == alarm::v1 && minute == alarm::d1 && second == 1)
     {
         digitalWrite(LED, HIGH);
         kordan();
         delay(100);   
     }
-    if (hour == s2 && minute == sas2 && second == 1)
+    if (hour == alarm::s2 && minute == alarm::saalarm && second == 1)
     {
         digitalWrite(LED, HIGH);
         kordan();
         delay(100);   
     }
-    if (hour == sass3 && minute == minute3 && second == 1)
+    if (hour == alarm::sass3 && minute == alarm::minute3 && second == 1)
     {
         digitalWrite(LED, HIGH);
         kordan();
@@ -55,7 +57,7 @@ void setup()
 
 void loop() 
     {
-    //br() ;
+    //index.br() ;
     digitalWrite(LED, digitalRead(BUT1));
     if (h>=2)
         {
@@ -81,7 +83,7 @@ void loop()
     lcd.print (':');
     lcd.setCursor(12, 2);
     lcd.print (':');
-    ncoderrr ();
+    index.ncoderrr ();
     if (h > 2)
     {
         h = 0;
@@ -89,87 +91,87 @@ void loop()
 //      Serial.println(h);
   }
 }
-void ncoderrr ()
+void index.ncoderrr ()
     {
     lastButton = digitalRead(BUT); //чтение текущего положения кнопки
     long newPosition = myEnc.read(); //чтение новой позиции
-    if (newPosition != oldPosition) 
+    if (newPosition != encoder::oldPosition) 
     { //если она отлична от старой
-        if (oldPosition != -999)
+        if (encoder::oldPosition != -999)
         { //начальная позиция не интересует
             if (BOSSOFTHEGYM >= 1)
             {
                 if (BOSSOFTHEGYM == 1 )
                 {
-                    v1 = newPosition - oldPosition + v1;
-                    v1 = abs(v1);
+                    alarm::v1 = newPosition - encoder::oldPosition + alarm::v1;
+                    alarm::v1 = abs(alarm::v1);
                     lcd.setCursor (0, 2);
-                    lcd.print (v1);
-                    if (v1 >= 23)
+                    lcd.print (alarm::v1);
+                    if (alarm::v1 >= 23)
                     {
-                        v1 = 0;
+                        alarm::v1 = 0;
                     }
                }
                if (BOSSOFTHEGYM == 2 )
                    {
-                       d1 = newPosition - oldPosition + d1;
-                       d1 = abs(d1);
+                       alarm::d1 = newPosition - encoder::oldPosition + alarm::d1;
+                       alarm::d1 = abs(alarm::d1);
                        lcd.setCursor (3, 2);
-                       lcd.print (d1);
-                       if (d1 >= 59)
+                       lcd.print (alarm::d1);
+                       if (alarm::d1 >= 59)
                        {
-                           d1 = 0;
+                           alarm::d1 = 0;
                        }
                   }
                if (BOSSOFTHEGYM == 3 )
                {
-                   s2 = newPosition - oldPosition + s2;
-                   s2 = abs(s2);
+                   alarm::s2 = newPosition - encoder::oldPosition + alarm::s2;
+                   alarm::s2 = abs(alarm::s2);
                    lcd.setCursor (5, 2);
-                   lcd.print (s2);
-                   if (s2 >= 23)
+                   lcd.print (alarm::s2);
+                   if (alarm::s2 >= 23)
                    {
-                       s2 = 0;
+                       alarm::s2 = 0;
                    }
               }
               if (BOSSOFTHEGYM == 4 )
               {
-                  sas2 = newPosition - oldPosition + sas2;
-                  sas2 = abs(sas2);
+                  alarm::saalarm = newPosition - encoder::oldPosition + alarm::saalarm;
+                  alarm::saalarm = abs(alarm::saalarm);
                   lcd.setCursor (8, 2);
-                  lcd.print (sas2);
-                  if (v1 >= 59)
+                  lcd.print (alarm::saalarm);
+                  if (alarm::v1 >= 59)
                   {
-                      v1 = 0;
+                      alarm::v1 = 0;
                   }
              }
              if (BOSSOFTHEGYM == 5 )
              {
-                 sass3 = newPosition - oldPosition + sass3;
-                 sass3 = abs(sass3);
+                 alarm::sass3 = newPosition - encoder::oldPosition + alarm::sass3;
+                 alarm::sass3 = abs(alarm::sass3);
                  lcd.setCursor (11, 2);
-                 lcd.print (sass3);
-                 if (sass3 >= 23)
+                 lcd.print (alarm::sass3);
+                 if (alarm::sass3 >= 23)
             {
-            v1 = 0;
+            alarm::v1 = 0;
         }
       }
       if (BOSSOFTHEGYM == 6 )
       {
-        minute3 = newPosition - oldPosition + minute3;
-        minute3 = abs(minute3);
+        alarm::minute3 = newPosition - encoder::oldPosition + alarm::minute3;
+        alarm::minute3 = abs(alarm::minute3);
         lcd.setCursor (14, 2);
-        lcd.print (minute3);
-        if (minute3 >= 59)
+        lcd.print (alarm::minute3);
+        if (alarm::minute3 >= 59)
         {
-            minute3 = 0;
+            alarm::minute3 = 0;
         }
       }      
     }
             }
     if (BOSSOFTHEGYM <= 1) { 
     if (h == 0){
-    f = newPosition - oldPosition + f;
+    f = newPosition - encoder::oldPosition + f;
     f = abs(f);
     lcd.setCursor (10, 0);
     lcd.print (f);
@@ -179,7 +181,7 @@ void ncoderrr ()
      }
     }
      if (h == 1){
-     c = newPosition - oldPosition + c;
+     c = newPosition - encoder::oldPosition + c;
      c = abs(c);
      lcd.setCursor (13, 0);
      lcd.print (c);
@@ -190,6 +192,6 @@ void ncoderrr ()
     }    
     }
         }
-    oldPosition = newPosition; //запомнить новую позицию
+    encoder::oldPosition = newPosition; //запомнить новую позицию
  }
 }
