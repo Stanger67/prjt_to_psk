@@ -35,8 +35,6 @@ Rtc_Pcf8563 rtc;
 Stepper stepper(32,8,10,9,11);
 Servo servoDrive;
 Encoder myEnc(encoder::pinA, encoder::pinB); //объявление объекта для работы с энкодером
-
-
 class index{
   public:
 void br(){
@@ -58,25 +56,25 @@ void br(){
 
     if (hour == alarm::v1 && minute == alarm::d1 && second == 1)
     {
-        digitalWrite(LED, HIGH);
+//        digitalWrite(LED, HIGH);
         kordan();
         delay(100);   
     }
     if (hour == alarm::s2 && minute == alarm::saalarm && second == 1)
     {
-        digitalWrite(LED, HIGH);
+//        digitalWrite(LED, HIGH);
         kordan();
         delay(100);   
     }
     if (hour == alarm::sass3 && minute == alarm::minute3 && second == 1)
     {
-        digitalWrite(LED, HIGH);
+     //   digitalWrite(LED, HIGH);
         kordan();
         delay(100);   
    }
 }
-void index.ncoderrr (){
-    lastButton = digitalRead(BUT); //чтение текущего положения кнопки
+void ncoderrr (){
+   // lastButton = digitalRead(BUT); //чтение текущего положения кнопки
     long newPosition = myEnc.read(); //чтение новой позиции
     if (newPosition != encoder::oldPosition) 
     { //если она отлична от старой
@@ -179,10 +177,16 @@ void index.ncoderrr (){
 
 }
 
+void kordan(){
+  stepper.setSpeed(500);
+  stepper.step(2048);
+  delay(1500);
 
+  stepper.setSpeed(1000);
+  stepper.step(-2048);
+  delay(1500);
+}
 
-  private:
+  
 
-}
-}
-}
+};
