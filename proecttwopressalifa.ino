@@ -5,11 +5,11 @@
  #include <Servo.h>
  #include <Stepper.h>
 
- Stepper stepper(32,8,10,9,11);
+ Stepper stepper(32,9,12,10,11);                                          // ..., IN1, IN3, IN2, IN4
  
     const int pinA = A1; //вывод подключения контакта А
     const int pinB = A2; //вывод подключения контакта В
-    const int BUT = A5; //вывод подключения контакта D
+    const int BUT = A3; //вывод подключения контакта D++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     const int LED = 6;
     const int BUT1 = A0;
     const int BUT3 = 13;//включени
