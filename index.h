@@ -6,21 +6,6 @@
  #include <Stepper.h>
  #include "namespace.h"
 
-
-void kordan(){
-  ptw_obj::st_m.setSpeed(500);
-  ptw_obj::st_m.step(2048);
-  delay(1500);
-
-  ptw_obj::st_m.setSpeed(1000);
-  ptw_obj::st_m.step(-2048);
-  delay(1500);
-}
-void alarm_for_work(){
-  if (ptw::alarm_all[3] >= 1){
-     
-  }
-}
 void br(){
     if (digitalRead(ptw::BUT1) == HIGH)
     {
@@ -38,6 +23,8 @@ void br(){
     byte minute = ptw_obj::rtc.getMinute();
     byte second = ptw_obj::rtc.getSecond ();
 
+   if ((ptw::alarm_hour [2] > 0 && ptw::alarm_all [2] >= 0) or (ptw::alarm_all [2] > 0 && ptw::alarm_hour [2] >= 0)or (ptw::alarm_hour [2] > 0 && ptw::alarm_all [2] > 0 ))
+   {
     if (hour == ptw::alarm_hour [2] && minute == ptw::alarm_all [2] && second == 1)
     {
         ptw_obj::st_m.setSpeed(500);
@@ -50,6 +37,9 @@ void br(){
         
         delay(100);   
     }
+   }
+   if ((ptw::alarm_hour [3] > 0 && ptw::alarm_all [3] >= 0) or (ptw::alarm_all [3] > 0 && ptw::alarm_hour [3] >= 0)or (ptw::alarm_hour [3] > 0 && ptw::alarm_all [3] > 0 ))
+   {
     if (hour == ptw::alarm_hour [3] && minute == ptw::alarm_all [3] && second == 1)
     {
         ptw_obj::st_m.setSpeed(500);
@@ -62,6 +52,9 @@ void br(){
         
         delay(100);   
     }
+   }
+   if ((ptw::alarm_hour [4] > 0 && ptw::alarm_all [4] >= 0) or (ptw::alarm_all [4] > 0 && ptw::alarm_hour [2] >= 0)or (ptw::alarm_hour [4] > 0 && ptw::alarm_all [4] > 0 ))
+   {
     if (hour == ptw::alarm_hour [4] && minute ==ptw::alarm_all [4] && second == 1)
     {
         ptw_obj::st_m.setSpeed(500);
@@ -74,6 +67,7 @@ void br(){
         
         delay(100);   
    }
+  }
 }
 
 void ncoderrr ()

@@ -5,15 +5,13 @@ int alarm_all [5];
 const int pinA = A1; 
 const int pinB = A2;
 const int BUT = A3; 
-const int LED = 6;
-const int BUT1 = A0;
+const int BUT1 = 6;
 const int BUT3 = 13; 
 long oldPosition  = -999;
 bool lastButton = HIGH;
 int degree = 0;
+int n = 0;//число чисел в массиве
 int h= 0;
-int f= 0;
-int c= 0;
 int br_int = 0;
 }
 namespace ptw_obj{
