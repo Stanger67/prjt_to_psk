@@ -18,7 +18,7 @@ void loop()
         {
             ptw_obj::rtc.initClock();//часы
 /*            ptw_obj::ptw_obj::rtc.setDate (9, 2, 10, 0, 21); // месяц3, неделя1, день2, год4*/
-            ptw_obj::rtc.setTime(ptw::alarm_all [1], ptw::alarm_all [2], 0);
+            ptw_obj::rtc.setTime(ptw::alarm_hour [1], ptw::alarm_all [1], 0);
         }
     ptw_obj::lcd.home();
     ptw_obj::lcd.print (ptw_obj::rtc.formatTime());//часы
